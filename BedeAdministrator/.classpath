@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="libs"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/flamingo-6.2.jar"/>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/laf-plugin-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/laf-widget-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/mysql-connector-java-commercial-5.1.29-bin.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/substance-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/substance-flamingo-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/substance-swingx-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/java/projets perso/BedeAdministrator/libs/trident-6.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BedeAdministrator/libs"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
