@@ -50,11 +50,8 @@ public class LFSerie extends JFrame{
 		listeSerie = new JList<Serie>(lmSerie);
 		listeSerie.setCellRenderer(new SerieListRenderer());
 		listeSerie.addListSelectionListener(controler);
-		listeSerie.setMinimumSize(new Dimension(250, 400));
-		listeSerie.setPreferredSize(new Dimension(250, 400));
 
 		progressBar = new JProgressBar();
-		
 		
 		listeAlbum = new JList<Album>(lmAlbum);
 		listeAlbum.setLayoutOrientation(JList.HORIZONTAL_WRAP);
