@@ -71,8 +71,9 @@ public class LFSerie extends JFrame{
 
 		viewSerie = new SerieView(null);
 		viewAlbum = new AlbumSmallView(null);
-		viewAlbum.setMinimumSize(new Dimension(320, 400));
-		viewAlbum.setPreferredSize(new Dimension(320, 400));
+		viewAlbum.setMinimumSize(new Dimension(400, 400));
+		viewAlbum.setPreferredSize(new Dimension(400, 400));
+		viewAlbum.setSize(new Dimension(400, 400));
 
 		JPanel panelHeaderFiche = new JPanel(new BorderLayout());
 		panelHeaderFiche.add(viewSerie);
