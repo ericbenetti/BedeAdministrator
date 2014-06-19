@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ericb.bedeadmin.model.Album;
+import com.ericb.bedeadmin.model.Auteur;
 import com.ericb.bedeadmin.model.Editeur;
 import com.ericb.bedeadmin.model.FormatAlbum;
 import com.ericb.bedeadmin.model.Genre;
+import com.ericb.bedeadmin.model.Metier;
+import com.ericb.bedeadmin.model.Personne;
 import com.ericb.bedeadmin.model.Serie;
 import com.ericb.bedeadmin.server.dao.DBConnection;
 
@@ -73,7 +76,9 @@ public class BedeAdministrator {
 						null);
 				album.setFormat( (rs.getInt("formatAlbum") == 2) ? FormatAlbum.GRAND_FORMAT : FormatAlbum.FORMAT_NORMAL);
 				album.setIsbn(rs.getString("isbn"));
+				album.setAuteurs(getListeAuteur(album));
 				albums.add(album);
+				
 			}
 			return albums;
 		} catch (SQLException e) {
@@ -81,6 +86,22 @@ public class BedeAdministrator {
 			return albums;
 		}
 		
+	}
+
+	public List<Auteur> getListeAuteur(Album album) {
+		List<Auteur> auteurs = new ArrayList<Auteur>();		
+		try {
+			ResultSet rs = DBConnection.getInstance().executeQuery("SELECT * FROM AuteursAlbum WHERE idAlbum = " + album.getId());
+			while (rs.next()) {
+				Auteur auteur = new Auteur(new Personne(rs.getString("nom"), rs.getString("prenom"), rs.getString("nomUsuel")),
+						new Metier(rs.getInt("idMetier"), rs.getString("libelleMetier")));
+				auteurs.add(auteur);
+			}
+			return auteurs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return auteurs;
+		}			
 	}
 	
 	public int getTauxSerieComplete(List<Serie> series) {

@@ -21,11 +21,16 @@ public class Album extends Entite {
 	private Editeur editeur;
 	private Genre genre;
 	private List<Auteur> auteurs;
-	
+
+	private String scenario;
+	private String dessin;
+	private String couleur;
+
+
 	public Album(Serie serie, boolean horsSerie, String numero, String cycle, String titre, String couverture) {
 		this(0, titre, numero, cycle, null, null, false, horsSerie, false, couverture, serie, null, null, new ArrayList<Auteur>());
 	}
-	
+
 	public Album(String titre) {
 		this(0, titre, null, null, null, null, false, false, false, null, null, null, null, new ArrayList<Auteur>());
 	}
@@ -41,7 +46,7 @@ public class Album extends Entite {
 		this.serie = serie;
 		this.editeur = editeur;
 		this.genre = genre;
-		this.auteurs = auteurs;
+		setAuteurs(auteurs); 
 	}
 
 
@@ -123,6 +128,22 @@ public class Album extends Entite {
 
 	public void setAuteurs(List<Auteur> auteurs) {
 		this.auteurs = auteurs;
+		this.scenario = "";
+		this.dessin = "";
+		this.couleur = "";	
+		if (auteurs!=null) {
+			for (Auteur auteur : auteurs) {
+				if (auteur.getMetier()!=null) { 
+					if (auteur.getMetier().getLibelle().equals("Scenario")) {  
+						scenario += (scenario.equals("") ? "" : "; ") + auteur.getPersonne().getNomUsuel();
+					} else if (auteur.getMetier().getLibelle().equals("Dessin")) {  
+						dessin += (dessin.equals("") ? "" : "; ") + auteur.getPersonne().getNomUsuel();
+					} else if (auteur.getMetier().getLibelle().equals("Couleur")) {  
+						couleur += (couleur.equals("") ? "" : "; ") + auteur.getPersonne().getNomUsuel();
+					}
+				}
+			} 
+		}
 	}
 
 	public boolean isHorsSerie() {
@@ -164,6 +185,18 @@ public class Album extends Entite {
 	public void setFormat(FormatAlbum format) {
 		this.format = format;
 	}
-	
+
+	public String getScenario() {
+		return this.scenario;
+	}
+
+	public String getCouleur() {
+		return this.couleur;
+	}
+
+	public String getDessin() {
+		return this.dessin;
+	}
+
 
 }

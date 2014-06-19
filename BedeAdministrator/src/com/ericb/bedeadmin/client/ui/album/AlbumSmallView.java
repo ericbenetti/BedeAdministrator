@@ -27,7 +27,10 @@ public class AlbumSmallView extends JPanel {
 	private JLabel scenario = new JLabel();
 	private JLabel labelScenario = new JLabel("Scénario :");
 	private JLabel dessin = new JLabel();
+	private JLabel labelDessin = new JLabel("Dessin :");
 	private JLabel couleur = new JLabel();
+	private JLabel labelCouleur = new JLabel("Couleur :");
+	
 	private JLabel premiereEdition = new JLabel();
 	private JLabel horsSerie = new JLabel();
 	private JLabel possede = new JLabel();
@@ -49,18 +52,21 @@ public class AlbumSmallView extends JPanel {
 		tome.setFont(tomeFont);
 		scenario.setFont(propertieFont);
 		labelScenario.setFont(labelFont);
+		labelDessin.setFont(labelFont);
+		dessin.setFont(propertieFont);
+		labelCouleur.setFont(labelFont);
+		couleur.setFont(propertieFont);
 		
 		this.add(titre, new GridBagConstraints(0, 0, 4, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(10,10,5,10), 0, 0));
 		this.add(tome, new GridBagConstraints(0, 1, 4, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,10,5,10), 0, 0));
 		this.add(labelScenario, new GridBagConstraints(0, 2, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
-		this.add(scenario, new GridBagConstraints(1, 2, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,10,5,10), 0, 0));
-//	
-//		this.add(new JLabel("Dessin :"), new GridBagConstraints(0, 3, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
-//		this.add(dessin, new GridBagConstraints(1, 3, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
-//	
-//		this.add(new JLabel("Couleur :"), new GridBagConstraints(0, 4, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
-//		this.add(couleur, new GridBagConstraints(1, 4, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
-//		
+		this.add(scenario, new GridBagConstraints(1, 2, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,5,5,10), 0, 0));
+		this.add(labelDessin, new GridBagConstraints(0, 3, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
+		this.add(dessin, new GridBagConstraints(1, 3, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,5,5,10), 0, 0));
+		this.add(labelCouleur, new GridBagConstraints(0, 4, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
+		this.add(couleur, new GridBagConstraints(1, 4, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,5,5,10), 0, 0));
+	
+
 //		this.add(new JLabel("Editeur :"), new GridBagConstraints(0, 5, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
 //		this.add(editeur, new GridBagConstraints(1, 5, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
 //		
@@ -98,15 +104,17 @@ public class AlbumSmallView extends JPanel {
 			htmlTome += "</html>";
 
 			tome.setText(htmlTome);
-			scenario.setText("auteurs");
+
+			scenario.setText(album.getScenario() );
+			dessin.setText(album.getDessin());
+			couleur.setText(album.getCouleur());
 			
 			depotLegal.setText(album.getDepotLegal().toString());
 			cycle.setText(album.getCycle());
 			isbn.setText("");
 			editeur.setText(album.getEditeur().getLibelle());
 
-			dessin.setText("");
-			couleur.setText("");
+
 			premiereEdition.setText("" + album.isPremiereEdition());
 			horsSerie.setText("" + album.isHorsSerie());
 			possede.setText("" + album.isPossede());	
