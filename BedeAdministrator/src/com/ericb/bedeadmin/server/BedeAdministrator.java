@@ -78,7 +78,6 @@ public class BedeAdministrator {
 				album.setIsbn(rs.getString("isbn"));
 				album.setAuteurs(getListeAuteur(album));
 				albums.add(album);
-				
 			}
 			return albums;
 		} catch (SQLException e) {

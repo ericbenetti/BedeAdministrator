@@ -56,6 +56,8 @@ public class LFSerieControler implements ActionListener, ListSelectionListener {
 		view = new LFSerie(this, modelList, null, modelSubList);
 		view.getProgressBar().setValue(tauxSerieComplete);
 		view.setVisible(true);
+		view.getListeSerie().updateUI();
+		view.getListeSerie().setSelectedIndex(0);
 	}
 	
 	
@@ -100,6 +102,7 @@ public class LFSerieControler implements ActionListener, ListSelectionListener {
 		int visibleRowCount = (serie.getAlbums().size() / 5) +1;
 		view.getListeAlbum().setVisibleRowCount(visibleRowCount);
 		view.getListeAlbum().updateUI();
+		view.getListeAlbum().setSelectedIndex(0);
 		
 	}
 	

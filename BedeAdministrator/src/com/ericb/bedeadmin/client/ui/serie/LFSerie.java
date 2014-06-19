@@ -2,7 +2,9 @@
 package com.ericb.bedeadmin.client.ui.serie;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -19,6 +21,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 
 import com.ericb.bedeadmin.client.ClientApp;
 import com.ericb.bedeadmin.client.ui.album.AlbumListRenderer;
@@ -62,8 +69,8 @@ public class LFSerie extends JFrame{
 		listeAlbum.setVisibleRowCount(2);
 		listeAlbum.setCellRenderer(new AlbumListRenderer(ClientApp.STATIC_PROPERTIES.getProperty("bdgest.path")));
 		listeAlbum.addListSelectionListener(controler);
-
-
+		listeAlbum.setBorder(BorderFactory.createEmptyBorder());
+		
 		JPanel panelListe = new JPanel(new BorderLayout());
 		panelListe.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		panelListe.add(new JScrollPane(listeSerie), BorderLayout.CENTER);
@@ -71,31 +78,32 @@ public class LFSerie extends JFrame{
 
 		viewSerie = new SerieView(null);
 		viewAlbum = new AlbumSmallView(null);
-		viewAlbum.setMinimumSize(new Dimension(400, 400));
-		viewAlbum.setPreferredSize(new Dimension(400, 400));
-		viewAlbum.setSize(new Dimension(400, 400));
+		viewAlbum.setMinimumSize(new Dimension(360, 400));
+		viewAlbum.setPreferredSize(new Dimension(360, 400));
+		viewAlbum.setSize(new Dimension(360, 400));
 
 		JPanel panelHeaderFiche = new JPanel(new BorderLayout());
 		panelHeaderFiche.add(viewSerie);
 		JPanel panelFiche = new JPanel(new BorderLayout());
 		panelFiche.add(panelHeaderFiche, BorderLayout.PAGE_START);
-		panelFiche.add(new JScrollPane(listeAlbum), BorderLayout.CENTER);
+		
+		JPanel panelListeAlbum = new JPanel(new BorderLayout());
+		panelListeAlbum.setBorder(new TitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "INFORMATIONS SUR L'ALBUM", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
+		
+		panelListeAlbum.add(new JScrollPane(listeAlbum), BorderLayout.CENTER);
 		panelFiche.add(viewAlbum, BorderLayout.LINE_END);
+		panelFiche.add(panelListeAlbum, BorderLayout.CENTER);
 
 		toolBar = new JToolBar();
 		toolBar.add(Box.createHorizontalGlue());
-		addToolBarButton(toolBar, "shutdown24.png", LFSerieControler.EXIT_APPLICATION, "Quiiter", "Quitter");
+		addToolBarButton(toolBar, "power_off.png", LFSerieControler.EXIT_APPLICATION, null, "Quitter");
 
 		split = new JSplitPane (JSplitPane.HORIZONTAL_SPLIT, panelListe, panelFiche);
 
-		//this.setJMenuBar(menuBar);
 		this.add(toolBar, BorderLayout.PAGE_END);
 		this.add(split, BorderLayout.CENTER);
-		//this.pack();
-
 	}
-
-
+	
 	public JList<Serie> getListeSerie() {
 		return listeSerie;
 	}

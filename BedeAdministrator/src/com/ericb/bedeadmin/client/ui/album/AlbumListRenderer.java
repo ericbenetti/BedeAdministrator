@@ -35,10 +35,6 @@ public class AlbumListRenderer extends JPanel implements ListCellRenderer<Album>
 		pnl_couverture.setMinimumSize(dim);
 		pnl_couverture.setMaximumSize(dim);
 		pnl_couverture.setSize(dim);
-		//lbl_vue  = new JLabel(new ImageIcon(getClass().getResource("/com/orou_eben/common/icons/warning24.png")));
-		//pnl_couverture.add(lbl_vue);
-		
-		//pnl_couverture.add(lbl_vue);
 		lbl_titre = new JLabel();
 		lbl_titre.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(pnl_couverture, new GridBagConstraints(0, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(5,5,2,5), 0, 0));
@@ -56,7 +52,6 @@ public class AlbumListRenderer extends JPanel implements ListCellRenderer<Album>
 		htmlTitle += "</html>";
 		lbl_titre.setText(htmlTitle);
 		lbl_titre.setForeground(Color.white);	
-		//lbl_vue.setVisible(!value.isPossede());		
 		return this;
 	}
 }

@@ -42,6 +42,8 @@ public class Album extends Entite {
 		this.depotLegal = dateSortie;
 		this.idSiteRef = idSiteRef;
 		this.possede = possede;
+		this.horsSerie = horsSerie;
+		this.premiereEdition = premiereEdition;
 		this.couverture = couverture;
 		this.serie = serie;
 		this.editeur = editeur;
