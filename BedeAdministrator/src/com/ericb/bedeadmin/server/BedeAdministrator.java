@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.ericb.bedeadmin.model.Album;
 import com.ericb.bedeadmin.model.Editeur;
+import com.ericb.bedeadmin.model.FormatAlbum;
 import com.ericb.bedeadmin.model.Genre;
 import com.ericb.bedeadmin.model.Serie;
 import com.ericb.bedeadmin.server.dao.DBConnection;
@@ -53,7 +54,7 @@ public class BedeAdministrator {
 	public List<Album> getListeAlbum(Serie serie) {
 		List<Album> albums = new ArrayList<Album>();		
 		try {
-			ResultSet rs = DBConnection.getInstance().executeQuery("SELECT * FROM AlbumsSerie WHERE idSerie = " + serie.getId());
+			ResultSet rs = DBConnection.getInstance().executeQuery("SELECT * FROM AlbumsSerie WHERE idSerie = " + serie.getId() + " ORDER BY depotLegal");
 			while (rs.next()) {
 				Album album = new Album(
 						rs.getInt("idAlbum"), 
@@ -70,7 +71,8 @@ public class BedeAdministrator {
 						new Editeur(rs.getInt("idEditeur"), rs.getString("NomEditeur") ), 
 						new Genre(rs.getInt("idGenre"), rs.getString("LibelleGenre") ), 
 						null);
-				
+				album.setFormat( (rs.getInt("formatAlbum") == 2) ? FormatAlbum.GRAND_FORMAT : FormatAlbum.FORMAT_NORMAL);
+				album.setIsbn(rs.getString("isbn"));
 				albums.add(album);
 			}
 			return albums;

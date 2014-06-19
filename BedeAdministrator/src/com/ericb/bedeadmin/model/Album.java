@@ -11,6 +11,8 @@ public class Album extends Entite {
 	private String cycle;
 	private Date depotLegal;
 	private String idSiteRef;
+	private String isbn;
+	private FormatAlbum format;
 	private boolean possede;
 	private boolean horsSerie;
 	private boolean premiereEdition;
@@ -145,6 +147,22 @@ public class Album extends Entite {
 
 	public void setGenre(Genre genre) {
 		this.genre = genre;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public FormatAlbum getFormat() {
+		return format;
+	}
+
+	public void setFormat(FormatAlbum format) {
+		this.format = format;
 	}
 	
 

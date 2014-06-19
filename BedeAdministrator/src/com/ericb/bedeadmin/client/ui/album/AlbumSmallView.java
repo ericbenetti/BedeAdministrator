@@ -23,12 +23,13 @@ public class AlbumSmallView extends JPanel {
 	private JLabel cycle = new JLabel();
 	private JLabel isbn = new JLabel();
 	private JLabel editeur = new JLabel();
-	private JLabel texte = new JLabel();
+	private JLabel scenario = new JLabel();
 	private JLabel dessin = new JLabel();
 	private JLabel couleur = new JLabel();
 	private JLabel premiereEdition = new JLabel();
 	private JLabel horsSerie = new JLabel();
 	private JLabel possede = new JLabel();
+	private JLabel format = new JLabel();
 
 	private Album album;
 
@@ -43,7 +44,7 @@ public class AlbumSmallView extends JPanel {
 		this.add(tome, new GridBagConstraints(1, 1, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
 		
 		this.add(new JLabel("Texte :"), new GridBagConstraints(0, 2, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
-		this.add(texte, new GridBagConstraints(1, 2, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
+		this.add(scenario, new GridBagConstraints(1, 2, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
 	
 		this.add(new JLabel("Dessin :"), new GridBagConstraints(0, 3, 1, 1, .0, .0, GridBagConstraints.EAST, GridBagConstraints.EAST, new Insets(0,10,5,0), 0, 0));
 		this.add(dessin, new GridBagConstraints(1, 3, 3, 1, 1., 0., GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0,0,5,10), 0, 0));
@@ -70,6 +71,39 @@ public class AlbumSmallView extends JPanel {
 		
 		this.add(new JPanel(), new GridBagConstraints(0, 10, 4, 1, 1., 1.,  GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0,0,10,0), 0, 0));
 
+	}
+
+	public void setAlbum(Album album) {
+		if (album!=null) {
+			titre.setText(album.getTitre());
+			tome.setText(album.getNumero());
+			depotLegal.setText(album.getDepotLegal().toString());
+			cycle.setText(album.getCycle());
+			isbn.setText("");
+			editeur.setText(album.getEditeur().getLibelle());
+			scenario.setText("");
+			dessin.setText("");
+			couleur.setText("");
+			premiereEdition.setText("" + album.isPremiereEdition());
+			horsSerie.setText("" + album.isHorsSerie());
+			possede.setText("" + album.isPossede());	
+			format.setText(album.getFormat().toString());
+		} else {
+			titre.setText("");
+			tome.setText("");
+			depotLegal.setText("");
+			cycle.setText("");
+			isbn.setText("");
+			editeur.setText("");
+			scenario.setText("");
+			dessin.setText("");
+			couleur.setText("");
+			premiereEdition.setText("");
+			horsSerie.setText("");
+			possede.setText("");	
+			format.setText("");
+		}
+		
 	}
 
 

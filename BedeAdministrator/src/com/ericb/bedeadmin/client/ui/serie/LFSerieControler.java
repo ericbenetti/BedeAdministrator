@@ -77,11 +77,18 @@ public class LFSerieControler implements ActionListener, ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource().equals(view.getListeSerie())) {
-			refreshSerie(view.getListeSerie().getSelectedValue());
+			refreshSerieView(view.getListeSerie().getSelectedValue());
+		} else if (e.getSource().equals(view.getListeAlbum())) {
+			refreshAlbumView(view.getListeAlbum().getSelectedValue());
 		}			
 	}
 	
-	private void refreshSerie(Serie selectedValue) {
+	private void refreshAlbumView(Album selectedValue) {
+		Album album = selectedValue;
+		view.getViewAlbum().setAlbum(album);
+	}
+
+	private void refreshSerieView(Serie selectedValue) {
 		Serie serie = selectedValue;
 		view.getViewSerie().setSerie(serie);
 		
