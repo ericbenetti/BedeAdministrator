@@ -8,10 +8,8 @@ import java.util.Properties;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.pushingpixels.substance.api.SubstanceLookAndFeel;
-import org.pushingpixels.substance.api.skin.GraphiteSkin;
-import org.pushingpixels.substance.api.skin.SubstanceGraphiteGlassLookAndFeel;
-
+import com.ericb.bedeadmin.client.ui.album.LFAlbums;
+import com.ericb.bedeadmin.client.ui.album.LFAlbumsControler;
 import com.ericb.bedeadmin.client.ui.serie.LFSerieControler;
 
 public class ClientApp {
@@ -32,21 +30,30 @@ public class ClientApp {
 			e.printStackTrace();
 		}
 
-		SubstanceLookAndFeel.setSkin(new GraphiteSkin());
+		//SubstanceLookAndFeel.setSkin(new GraphiteSkin());
 		//SubstanceLookAndFeel.setSkin(new BusinessSkin());
 		//SubstanceLookAndFeel.setSkin(new GeminiSkin());
 		try {
-			UIManager.setLookAndFeel(new SubstanceGraphiteGlassLookAndFeel());
+            // select Look and Feel
+            Properties props = com.jtattoo.plaf.fast.FastLookAndFeel.getThemeProperties("Blue-Large-Font");
+            props.put("centerWindowTitle", "on");
+            props.put("textAntiAliasing", "on");
+            com.jtattoo.plaf.fast.FastLookAndFeel.setCurrentTheme(props);
+            
+            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+			//UIManager.setLookAndFveel(new SubstanceGraphiteGlassLookAndFeel());
 			//UIManager.setLookAndFeel(new SubstanceBusinessLookAndFeel());
 			//UIManager.setLookAndFeel(new SubstanceGeminiLookAndFeel());
-		} catch (UnsupportedLookAndFeelException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LFSerieControler.getInstance().show();
+					//LFSerieControler.getInstance().show();
+					LFAlbumsControler.getInstance().show();
+//					(new LFAlbums(null)).setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

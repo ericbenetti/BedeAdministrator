@@ -2,9 +2,7 @@
 package com.ericb.bedeadmin.client.ui.serie;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -23,9 +21,6 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 
 import com.ericb.bedeadmin.client.ClientApp;
 import com.ericb.bedeadmin.client.ui.album.AlbumListRenderer;
@@ -49,6 +44,7 @@ public class LFSerie extends JFrame{
 	private LFSerieControler controler;
 
 	public LFSerie (LFSerieControler controler, DefaultListModel<Serie> lmSerie, Serie serie, DefaultListModel<Album> lmAlbum) {
+		super("Minimal-Frame-Application");
 		this.controler = controler;
 		this.setTitle("The collector");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

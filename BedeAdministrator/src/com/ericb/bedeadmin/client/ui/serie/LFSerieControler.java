@@ -34,7 +34,7 @@ public class LFSerieControler implements ActionListener, ListSelectionListener {
 		modelList = new DefaultListModel<Serie>();
 		modelSubList = new DefaultListModel<Album>();
 		series = BedeAdministrator.getInstance().getListeSerie();
-
+		List<Album> albums = BedeAdministrator.getInstance().getListeAlbumForView();
 		int possedes=0;
 		for (Serie serie : series) {
 			modelList.addElement(serie);

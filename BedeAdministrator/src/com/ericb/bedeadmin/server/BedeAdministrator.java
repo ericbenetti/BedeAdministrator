@@ -61,7 +61,45 @@ public class BedeAdministrator {
 			while (rs.next()) {
 				Album album = new Album(
 						rs.getInt("idAlbum"), 
-						rs.getString("TitreAlbum"), 
+						rs.getString("titre"), 
+						rs.getString("Numero"), 
+						rs.getString("cycle"), 
+						rs.getDate("depotLegal"), 
+						rs.getString("idSiteRef"), 
+						rs.getBoolean("possede"), 
+						rs.getBoolean("horsSerie"),
+						rs.getBoolean("premiereEdition"), 
+						rs.getString("couverture"), 
+						new Serie(rs.getInt("idSerie"), rs.getString("serie")), 
+						new Editeur(rs.getInt("idEditeur"), rs.getString("editeur") ), 
+						new Genre(rs.getInt("idGenre"), rs.getString("genre") ), 
+						null);
+				album.setFormat( (rs.getInt("formatAlbum") == 2) ? FormatAlbum.GRAND_FORMAT : FormatAlbum.FORMAT_NORMAL);
+				album.setIsbn(rs.getString("isbn"));
+				album.setAuteurs(getListeAuteur(album));
+				albums.add(album);
+			}
+			return albums;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return albums;
+		}
+		
+	}
+	public List<Album> getListeAlbumForView() {
+		List<Album> albums = new ArrayList<Album>();		
+		try {
+			ResultSet rs = DBConnection.getInstance().executeQuery("SELECT * FROM AlbumsSerie");
+			while (rs.next()) {
+				Serie serie = null;
+				if (rs.getInt("idSerie")!= 0) {
+					 serie =new Serie(rs.getInt("idSerie"), rs.getString("serie"));
+				}
+				
+				
+				Album album = new Album(
+						rs.getInt("idAlbum"), 
+						rs.getString("titre"), 
 						rs.getString("Numero"), 
 						rs.getString("cycle"), 
 						rs.getDate("depotLegal"), 
@@ -71,8 +109,8 @@ public class BedeAdministrator {
 						rs.getBoolean("premiereEdition"), 
 						rs.getString("couverture"), 
 						serie, 
-						new Editeur(rs.getInt("idEditeur"), rs.getString("NomEditeur") ), 
-						new Genre(rs.getInt("idGenre"), rs.getString("LibelleGenre") ), 
+						new Editeur(rs.getInt("idEditeur"), rs.getString("editeur") ), 
+						new Genre(rs.getInt("idGenre"), rs.getString("genre") ), 
 						null);
 				album.setFormat( (rs.getInt("formatAlbum") == 2) ? FormatAlbum.GRAND_FORMAT : FormatAlbum.FORMAT_NORMAL);
 				album.setIsbn(rs.getString("isbn"));

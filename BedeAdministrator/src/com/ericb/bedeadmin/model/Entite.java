@@ -1,15 +1,18 @@
 package com.ericb.bedeadmin.model;
 
+import com.ericb.bedeadmin.server.dao.DBAction;
+
 public abstract class Entite {
 	
 	private int id;
 	private String libelle;
 	private String statut;	
-	
+	private DBAction dbAction;
 	public Entite(int id, String libelle) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
+		this.dbAction = DBAction.NONE;
 	}
 	
 	public int getId() {
@@ -34,6 +37,14 @@ public abstract class Entite {
 
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+
+	public DBAction getDbAction() {
+		return dbAction;
+	}
+
+	public void setDbAction(DBAction dbAction) {
+		this.dbAction = dbAction;
 	}
 	
 	

@@ -22,6 +22,10 @@ public class Serie extends Entite {
 	public Serie(int id, String titre, boolean terrmine, int nombreAlbums) {
 		this(id, titre, terrmine, nombreAlbums, null, new ArrayList<Album>());
 	}
+	
+	public Serie(int id, String titre) {
+		this(id, titre, false , 0, null, new ArrayList<Album>());
+	}
 
 	public Serie(String titre) {
 		this(0, titre, false , 0, null, new ArrayList<Album>());

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class Album extends Entite {
+public class Album extends Entite implements Comparable<Album>{
 
 	private String numero;
 	private String cycle;
@@ -200,5 +200,100 @@ public class Album extends Entite {
 		return this.dessin;
 	}
 
+	public String getTitreCompletHtml() {
+		String html = "<html>";
+		if (this.serie != null) {
+			html += "<b>" + this.serie.getTitre() + "</b>";
+			if (this.isHorsSerie()) {
+				html += " - HS";
+			} else if (this.numero != null) {
+				html += " - " + this.numero;
+			}
+
+			if (this.cycle != null) {
+				html += " - " + this.cycle;
+			}
+			html += " - " ;
+		}
+		html += this.getTitre() + "</html>";	
+		return html;
+	}
+
+	public boolean add(Auteur e) {
+		return auteurs.add(e);
+	}
+
+	public void clear() {
+		auteurs.clear();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.getTitreCompletHtml().equals(((Album)obj).getTitreCompletHtml());
+	}
+
+	@Override
+	public int compareTo(Album other) {
+		String thisTitre = "";
+		String otherTitre= "";
+		
+		
+		if ((this.getSerie()!= null)) {
+			thisTitre = this.getSerie().getTitre();
+		}
+		
+		if ((other.getSerie()!= null)) {
+			otherTitre = other.getSerie().getTitre();
+		}
+		
+		if (thisTitre.equals(otherTitre)) {
+			if (thisTitre.equals("")) {
+				return this.getTitre().compareTo(other.getTitre());
+			} else {
+				if ((this.getCycle() != null) && (other.getCycle() != null) && this.getCycle().equals(other.getCycle())) {
+					if ((this.getNumero() != null) && (other.getNumero() != null)){
+						Integer thisNo  = new Integer(this.getNumero());
+						Integer otherNo  = new Integer(other.getNumero());
+						return thisNo.compareTo(otherNo);
+						
+					} else {
+						if (this.getNumero() == null) {
+							return -1;
+						} else {
+							return 1;
+						}
+					}
+				} else {
+					if ((this.getCycle() != null) && (other.getCycle() != null)) {
+							return this.getCycle().compareTo(other.getCycle());
+					} else if ((this.getCycle() == null) && (other.getCycle() == null)){
+						if ((this.getNumero() != null) && (other.getNumero() != null)){
+							Integer thisNo  = new Integer(this.getNumero());
+							Integer otherNo  = new Integer(other.getNumero());
+							return thisNo.compareTo(otherNo);
+							
+						} else {
+							if (this.getNumero() == null) {
+								return -1;
+							} else {
+								return 1;
+							}
+						}
+						
+					} else {
+							if (this.getCycle() == null) {
+							return -1;
+						} else {
+							return 1;
+						}
+						
+					}
+				}
+			}
+			
+		} else {
+			return thisTitre.compareTo(otherTitre);		
+		}		
+	}
 
 }
