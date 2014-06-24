@@ -1,13 +1,21 @@
 package com.ericb.bedeadmin.client.ui.album;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 
 import com.ericb.bedeadmin.client.ClientApp;
@@ -16,14 +24,32 @@ import com.ericb.mycomponents.OnOffCellRenderer;
 public class LFAlbums extends JFrame {
 
 	private JTable table;
+	private JTextField editFind = new JTextField();
+	private JButton btnFind;
+	
 	//private AlbumEditor viewAlbum
-	
-	
+		
 	public LFAlbums(LFAlbumsControler controler,AlbumTableModel model) throws HeadlessException {
 		super("Minimal-Frame-Application");
 		setTitle("Les albums");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		btnFind = new JButton(new ImageIcon(ClientApp.class.getResource("ui/icons/magnify.png")));
+		btnFind.addActionListener(controler);
+		
+		editFind = new JTextField();
+		editFind.setMinimumSize(new Dimension(200,20));
+		editFind.setMaximumSize(new Dimension(300,20));
+		editFind.setPreferredSize(new Dimension(250,20));
+		editFind.setSize(new Dimension(250,20));		
+			
+		JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(editFind);
+		toolBar.add(btnFind);
+		toolBar.add(Box.createHorizontalGlue());
+		
+		this.add(toolBar, BorderLayout.PAGE_START);
+		
 		this.table = new JTable(model);
 		table.setShowGrid(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
